@@ -1,0 +1,15 @@
+1. podman not getting connected thru .py file:
+sol: - podman run -d --name postgres_app -p 5432:5432 -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=your_secure_password_here -e POSTGRES_DB=project1 -e POSTGRES_INITDB_ARGS="--auth=scram-sha-256" -v pg_data_volume:/var/lib/postgresql postgres:18
+
+2. POSTGRES_INITDB_ARGS="--auth=scram-sha-256" -- this fixes the password thing as well as 
+while login into postgres password was not asked
+
+3. now connecting thru dbeaver usually it gives timezone error
+quick fix- change the timezone for dbeaver to utc time, 
+other methods: - try changing timezones for postgres or setting timezones to postgres but that doesnt help
+
+tried but failed:
+tried 127.0.0.1 instead of local host even ipv4 address using ipconfig but that doesnt help
+
+solving the password:
+we can edit pg_hba.conf file as well using cat command  "cat << 'eof' > /var/lib/postgresql/18/docker/pg_hba.conf"

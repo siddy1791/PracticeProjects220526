@@ -139,3 +139,5 @@ reports/*.xml
 pabot_results/
 *.csv
 
+# folders stuff
+# .gitkeep  this will keep .gitkeep from gettimg checked in
