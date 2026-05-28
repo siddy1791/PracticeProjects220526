@@ -1,0 +1,24 @@
+version: 1
+
+databases:
+  - name: project1
+    tables: 
+      - name: orders
+        rules:
+          - type: null_check
+            severity: error
+            columns:
+              - customer_id
+              - order_date
+          
+          - type: duplicate_check
+            severity: error
+            columns:
+              - order_id
+
+          - type: value_range_check
+            severity: warning
+            columns:
+              - total_amount
+            min: 0.00
+            max: 50000.00

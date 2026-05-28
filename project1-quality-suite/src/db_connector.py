@@ -20,15 +20,24 @@ import psycopg2
 #     print("Attempting to connect to the database...")
 #     connect = db_connection()
 
+
+
+
 #  >>>>>>>>>>>>> USING SQLALCHEMY AND PANDAS <<<<<<<<<<<<<<<<<<<<<<<<<<<
 import pandas as pd
 from sqlalchemy import create_engine
 
 def db_connection(dbms,connectionlib,username,password,hostname,port,dbname):
     try:
+        print(f"Connecting to db::{dbname}")
         engine = create_engine(f"{dbms}+{connectionlib}://{username}:{password}@{hostname}:{port}/{dbname}")
-        sql_df = pd.read_sql("select version();",engine)
+        sql_df = pd.read_sql("select * from orders;",engine)
+        # sql_df.isnull().sum()  # null check per column
+        # sql_df[sql_df.isnull().any(axis=1)] # filter out rows where any column is null. if u want all coulmn null row then replace 'any' with 'all'
+        # sql_df[sql_df.duplicated()]  # By default, it checks all columns together. and sees if previous record is same as current
+        # sql_df[sql_df['total_amount'] > 50000]
         return sql_df
+
     except Exception as e:
         raise e
     
