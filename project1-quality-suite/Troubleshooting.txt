@@ -13,3 +13,13 @@ tried 127.0.0.1 instead of local host even ipv4 address using ipconfig but that 
 
 solving the password:
 we can edit pg_hba.conf file as well using cat command  "cat << 'eof' > /var/lib/postgresql/18/docker/pg_hba.conf"
+
+
+That f-string turns the list into a string like "['customer_id']".
+Instead, you want the actual list object, not a string. >>   yaml_data['databases'][0]['tables'][0]['rules'][i]['columns']
+
+
+rules_output = fileRead.rules_check(df,f"{yaml_data['databases'][0]['tables'][0]['rules'][i]}")
+You’re wrapping the YAML value in an f-string (f"...").
+That forces it into a string, even if the YAML entry is already a dictionary.
+So inside rules_check, rule_config is just a string representation of the rule, not the actual dict. sO JUST REMOVE THE f"..."

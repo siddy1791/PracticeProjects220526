@@ -1,0 +1,181 @@
+[
+    {
+        "DataBase": "project1",
+        "TableName": "orders",
+        "rule_type": "null_check",
+        "target_columns": [
+            "customer_id",
+            "order_date"
+        ],
+        "severity_level": "error",
+        "Num_of_rows_failed": 0,
+        "Failed_records": "NO FAILED RECORDS FOUND",
+        "status": "WARNING"
+    },
+    {
+        "DataBase": "project1",
+        "TableName": "orders",
+        "rule_type": "duplicate_check",
+        "target_columns": [
+            "order_id"
+        ],
+        "severity_level": "error",
+        "Num_of_rows_failed": 5,
+        "Failed_records": [
+            {
+                "order_id": "D_1081",
+                "customer_id": "C_81",
+                "order_date": "2026-01-04",
+                "total_amount": 199.99,
+                "status": "COMPLETED"
+            },
+            {
+                "order_id": "D_1082",
+                "customer_id": "C_82",
+                "order_date": "2026-01-04",
+                "total_amount": 199.99,
+                "status": "COMPLETED"
+            },
+            {
+                "order_id": "D_1083",
+                "customer_id": "C_83",
+                "order_date": "2026-01-04",
+                "total_amount": 199.99,
+                "status": "COMPLETED"
+            },
+            {
+                "order_id": "D_1084",
+                "customer_id": "C_84",
+                "order_date": "2026-01-04",
+                "total_amount": 199.99,
+                "status": "COMPLETED"
+            },
+            {
+                "order_id": "D_1085",
+                "customer_id": "C_85",
+                "order_date": "2026-01-04",
+                "total_amount": 199.99,
+                "status": "COMPLETED"
+            }
+        ],
+        "record_status": "PRESENT"
+    },
+    {
+        "DataBase": "project1",
+        "TableName": "orders",
+        "rule_type": "value_range_check",
+        "target_columns": [
+            "total_amount"
+        ],
+        "severity_level": "warning",
+        "Num_of_rows_failed": 15,
+        "Failed_records": [
+            {
+                "order_id": "V_1071",
+                "customer_id": "C_71",
+                "order_date": "2026-01-03",
+                "total_amount": -10.0,
+                "status": "REFUNDED"
+            },
+            {
+                "order_id": "V_1072",
+                "customer_id": "C_72",
+                "order_date": "2026-01-03",
+                "total_amount": -20.0,
+                "status": "REFUNDED"
+            },
+            {
+                "order_id": "V_1073",
+                "customer_id": "C_73",
+                "order_date": "2026-01-03",
+                "total_amount": -30.0,
+                "status": "REFUNDED"
+            },
+            {
+                "order_id": "V_1074",
+                "customer_id": "C_74",
+                "order_date": "2026-01-03",
+                "total_amount": -40.0,
+                "status": "REFUNDED"
+            },
+            {
+                "order_id": "V_1075",
+                "customer_id": "C_75",
+                "order_date": "2026-01-03",
+                "total_amount": -50.0,
+                "status": "REFUNDED"
+            },
+            {
+                "order_id": "V_1076",
+                "customer_id": "C_76",
+                "order_date": "2026-01-03",
+                "total_amount": -60.0,
+                "status": "REFUNDED"
+            },
+            {
+                "order_id": "V_1077",
+                "customer_id": "C_77",
+                "order_date": "2026-01-03",
+                "total_amount": -70.0,
+                "status": "REFUNDED"
+            },
+            {
+                "order_id": "V_1078",
+                "customer_id": "C_78",
+                "order_date": "2026-01-03",
+                "total_amount": -80.0,
+                "status": "REFUNDED"
+            },
+            {
+                "order_id": "V_1079",
+                "customer_id": "C_79",
+                "order_date": "2026-01-03",
+                "total_amount": -90.0,
+                "status": "REFUNDED"
+            },
+            {
+                "order_id": "V_1080",
+                "customer_id": "C_80",
+                "order_date": "2026-01-03",
+                "total_amount": -100.0,
+                "status": "REFUNDED"
+            },
+            {
+                "order_id": "O_1092",
+                "customer_id": "C_92",
+                "order_date": "2026-01-05",
+                "total_amount": 96000.0,
+                "status": "COMPLETED"
+            },
+            {
+                "order_id": "O_1094",
+                "customer_id": "C_94",
+                "order_date": "2026-01-05",
+                "total_amount": 97000.0,
+                "status": "COMPLETED"
+            },
+            {
+                "order_id": "O_1096",
+                "customer_id": "C_96",
+                "order_date": "2026-01-05",
+                "total_amount": 98000.0,
+                "status": "COMPLETED"
+            },
+            {
+                "order_id": "O_1098",
+                "customer_id": "C_98",
+                "order_date": "2026-01-05",
+                "total_amount": 99000.0,
+                "status": "COMPLETED"
+            },
+            {
+                "order_id": "O_1100",
+                "customer_id": "C_100",
+                "order_date": "2026-01-05",
+                "total_amount": 100000.0,
+                "status": "COMPLETED"
+            }
+        ],
+        "record_status": "PRESENT"
+    }
+]
