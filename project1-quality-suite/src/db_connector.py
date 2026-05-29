@@ -31,14 +31,18 @@ def db_connection(dbms,connectionlib,username,password,hostname,port,dbname):
     try:
         print(f"Connecting to db::{dbname}")
         engine = create_engine(f"{dbms}+{connectionlib}://{username}:{password}@{hostname}:{port}/{dbname}")
-        sql_df = pd.read_sql("select * from orders;",engine)
-        # sql_df.isnull().sum()  # null check per column
-        # sql_df[sql_df.isnull().any(axis=1)] # filter out rows where any column is null. if u want all coulmn null row then replace 'any' with 'all'
-        # sql_df[sql_df.duplicated()]  # By default, it checks all columns together. and sees if previous record is same as current
-        # sql_df[sql_df['total_amount'] > 50000]
+        
+        # 2. Establish an explicit connection boundary
+        with engine.connect() as conn:
+            # We pass the active connection 'conn' instead of the global pool 'engine'
+            sql_df = pd.read_sql("select * from orders;",conn)
+        
+        # 3. Dispose of the engine pool to free up system network sockets completely
+        engine.dispose()
         return sql_df
 
     except Exception as e:
+        print(f"Database connection failed due to err: {e}")
         raise e
     
 if __name__ == '__main__':
