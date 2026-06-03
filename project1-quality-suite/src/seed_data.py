@@ -1,7 +1,18 @@
 from sqlalchemy import create_engine, text
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def seed_database():
-    db_url = "postgresql+psycopg2://admin:postgres123@localhost:5432/project1"
+    dbms = os.environ.get("DB_DBMS", "postgresql")
+    connectionlib = os.environ.get("DB_LIB", "psycopg2")
+    username = os.environ.get("DB_USER")
+    password = os.environ.get("DB_PASSWORD")
+    hostname = os.environ.get("DB_HOST", "localhost")
+    port = os.environ.get("DB_PORT", "5432")
+
+    db_url = f"{dbms}+{connectionlib}://{username}:{password}@{hostname}:{port}/project1"
     engine = create_engine(db_url)
 
 

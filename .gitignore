@@ -138,6 +138,9 @@ reports/
 reports/*.xml
 pabot_results/
 *.csv
+*.md
+*.txt
 
 # folders stuff
+validation_report.json
 # .gitkeep  this will keep .gitkeep from gettimg checked in

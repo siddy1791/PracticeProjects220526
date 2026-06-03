@@ -1,5 +1,3 @@
-import psycopg2
-
 # --- > NORMAL DB CONNECTION TO POSTGRES DB <-------------
 # def db_connection():
 #     try:
@@ -26,10 +24,26 @@ import psycopg2
 #  >>>>>>>>>>>>> USING SQLALCHEMY AND PANDAS <<<<<<<<<<<<<<<<<<<<<<<<<<<
 import pandas as pd
 from sqlalchemy import create_engine
+import os
+from dotenv import load_dotenv
 
-def db_connection(dbms,connectionlib,username,password,hostname,port,dbname):
+load_dotenv()
+
+def db_connection(dbname):
     try:
-        print(f"Connecting to db::{dbname}")
+        # Retrieve credentials securely with safe default fallbacks
+        dbms = os.environ.get("DB_DBMS", "postgresql")
+        connectionlib = os.environ.get("DB_LIB", "psycopg2")
+        username = os.environ.get("DB_USER")
+        password = os.environ.get("DB_PASSWORD")
+        hostname = os.environ.get("DB_HOST", "localhost")
+        port = os.environ.get("DB_PORT", "5432")
+
+        if not username or not password:
+           raise ValueError("Database credentials missing from environment variables!")
+         
+        print(f"Connecting to db::{dbname} on {hostname}.{port}")
+
         engine = create_engine(f"{dbms}+{connectionlib}://{username}:{password}@{hostname}:{port}/{dbname}")
         
         # 2. Establish an explicit connection boundary
@@ -45,7 +59,4 @@ def db_connection(dbms,connectionlib,username,password,hostname,port,dbname):
         print(f"Database connection failed due to err: {e}")
         raise e
     
-if __name__ == '__main__':
-    connection = db_connection('postgresql','psycopg2','admin','postgres123','localhost','5432','project1')
-    print(connection)
     
